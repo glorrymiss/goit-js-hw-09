@@ -3,6 +3,7 @@ const btnStop = document.querySelector('button[data-stop]');
 
 btnStart.addEventListener('click', hendleClickOnBtnStart);
 btnStop.addEventListener('click', hendleClickOnBtnStop);
+btnStop.disabled = true;
 
 function hendleClickOnBtnStart(event) {
   timerId = setInterval(() => {

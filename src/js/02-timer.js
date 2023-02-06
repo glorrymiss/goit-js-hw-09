@@ -5,12 +5,13 @@ import 'notiflix/build/notiflix-notify-aio';
 
 const input = document.querySelector(`input[type="text"]`);
 const btnStart = document.querySelector('button[data-start]');
+
 //
 const daysValue = document.querySelector('span[data-days]');
 const hoursValue = document.querySelector('span[data-hours]');
 const minutesValue = document.querySelector('span[data-minutes]');
 const secondsValue = document.querySelector('span[data-seconds]');
-
+btnStart.disabled = true;
 const options = {
   enableTime: true,
   time_24hr: true,
