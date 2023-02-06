@@ -4,7 +4,7 @@ const btnStop = document.querySelector('button[data-stop]');
 btnStart.addEventListener('click', hendleClickOnBtnStart);
 btnStop.addEventListener('click', hendleClickOnBtnStop);
 btnStop.disabled = true;
-
+let timerId = null;
 function hendleClickOnBtnStart(event) {
   timerId = setInterval(() => {
     document.body.style.backgroundColor = getRandomHexColor();
