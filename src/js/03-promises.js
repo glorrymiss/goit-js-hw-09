@@ -24,58 +24,49 @@ function hendleClickSubmit(event) {
   for (let i = 1; i <= amount.value; i++) {
     if (i === 1) {
       timer = +delay.value;
-      createPromise(i, timer);
+      createPromise(i, timer)
+        .then(({ position, delay }) => {
+          Notiflix.Notify.success(
+            `✅ Fulfilled promise ${position} in ${delay}ms`
+          );
+        })
+        .catch(({ position, delay }) => {
+          Notiflix.Notify.failure(
+            `❌ Rejected promise ${position} in ${delay}ms`
+          );
+        });
       continue;
     } else {
       timer += +step.value;
     }
-    createPromise(i, timer);
+    createPromise(i, timer)
+      .then(({ position, delay }) => {
+        Notiflix.Notify.success(
+          `✅ Fulfilled promise ${position} in ${delay}ms`
+        );
+      })
+      .catch(({ position, delay }) => {
+        Notiflix.Notify.failure(
+          `❌ Rejected promise ${position} in ${delay}ms`
+        );
+      });
   }
   console.log(timer);
 }
 // функція створення промісів рандомно
 function createPromise(position, delay) {
-  setTimeout(() => {
-    const shouldResolve = Math.random() > 0.3;
-    if (shouldResolve) {
-      // Fulfill
-
-      Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
-    } else {
-      // Reject
-
-      Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
-    }
-  }, delay);
+  const shouldResolve = Math.random() > 0.3;
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (shouldResolve) {
+        // Fulfill
+        resolve({ position, delay });
+        // Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
+      } else {
+        // Reject
+        reject({ position, delay });
+        // Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
+      }
+    }, delay);
+  });
 }
-
-// createPromise(2, 1500)
-//   .then(({ position, delay }) => {
-//     Notiflix.Notify.success(resalt);
-//   })
-//   .catch(({ position, delay }) => {
-//     Notiflix.Notify.failure(error);
-//   });
-
-// const promise = new Promise((resolve, reject) => {
-//   const shouldResolve = Math.random() > 0.3;
-//   // setTimeOut(() => {
-//   if (shouldResolve) {
-//     // Fulfill
-//     resolve(`✅ Fulfilled promise ${position} in ${delay}ms`);
-//   }
-//   // Reject
-//   reject(`❌ Rejected promise ${position} in ${delay}ms`);
-//   // }, delay);
-// });
-// return promise;
-// }
-
-// createPromise(amount, firstDelay);
-
-//   .then(({ position, delay }) => {
-//     Notiflix.Notify.success(result);
-//   })
-//   .catch(({ position, delay }) => {
-//     Notiflix.Notify.warning(error);
-//   });
