@@ -17,6 +17,8 @@ img {
   max-width: 100%;
 }
 
+/*  ex 2 */
+
 .timer {
   display: flex;
   flex-wrap: wrap;
@@ -44,3 +46,4 @@ img {
   text-transform: uppercase;
   color: rgb(171, 91, 34);
 }
+/*  ex 3 */
