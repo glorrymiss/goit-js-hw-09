@@ -31,7 +31,7 @@ button[data-stop] {
 .timer {
   display: flex;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 20px;
   margin-top: 30px;
   width: calc(100% / 2);
 }
