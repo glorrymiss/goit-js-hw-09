@@ -33,11 +33,15 @@ const calendar = flatpickr(input, options);
 
 btnStart.addEventListener('click', hendleClickByBtnCheckDate);
 // заводить кнопка таймер
+
 function hendleClickByBtnCheckDate() {
-  const timerId = setInterval(
-    () => convertMs(calendar.selectedDates[0] - Date.now()),
-    1000
-  );
+  const timerId = setInterval(() => {
+    if (calendar.selectedDates[0] - Date.now() < 1000) {
+      clearInterval(timerId);
+      Notiflix.Notify.success('Time is up!!!');
+    }
+    convertMs(calendar.selectedDates[0] - Date.now());
+  }, 1000);
 }
 
 // функція запису зворотнього відліку в span
