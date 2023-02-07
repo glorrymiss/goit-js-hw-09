@@ -16,14 +16,15 @@ function hendleClickSubmit(event) {
   event.preventDefault();
 
   //  достукалась до значення інпутів форми
+  // const delay = event.currentTarget.elements.delay.value;
+  // console.log(delay);
   const {
-    elements: { delay, step, amount },
+    elements: { delay, amount, step },
   } = event.currentTarget;
 
   //   проходимо цикл додаємо на кожному проміс час кроку
-  let timer = Number(delay.value);
-  for (let position = 1; position <= amount.value; position++) {
-    form.reset();
+  let timer = +delay.value;
+  for (let position = 1; position <= +amount.value; position++) {
     createPromise(position, timer)
       .then(({ position, delay }) => {
         Notiflix.Notify.success(
@@ -35,9 +36,11 @@ function hendleClickSubmit(event) {
           `❌ Rejected promise ${position} in ${delay}ms`
         );
       });
-    timer += Number(step.value);
+    timer += +step.value;
   }
+  form.reset();
 }
+
 // функція створення промісів рандомно
 function createPromise(position, delay) {
   const shouldResolve = Math.random() > 0.3;
